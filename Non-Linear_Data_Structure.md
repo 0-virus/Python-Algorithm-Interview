@@ -21,6 +21,8 @@
 ### 그래프 순회
 &nbsp;그래프의 각 정점을 방문하는 것을 의미하며, 크게 깊이 우선 탐색(DFS, Depth First Search)과 너비 우선 탐색(BFS, Breadth First Search)으로 나뉜다.
 
+**예시 그래프**
+
 이미지 집어넣기
 ```python
 graph = {
@@ -49,6 +51,43 @@ def recursive_dfs(v, discovered=[]):
 ```
 
 2. 스택
+```python
+def dfs_stack(start_v):
+    stack = [start_v]
+    discovered = []
+    while stack:
+        v = stack.pop()
+        discovered.append(v)
+        for w in graph[v]:
+            if w not in discovered:
+                stack.append(w)
+    
+    return discovered
+```
 
 
 #### 너비 우선 탐색
+&nbsp;큐로 구현한다. 재귀로는 구현이 불가능하다.
+
+```python
+def bfs(start_v):
+    discovered = []
+    q = deque([start_v])
+
+    while q:
+        v = q.popleft()
+        if v not in discovered:
+            discovered.append(v)
+            for w in graph[v]:
+                q.append(w)
+    
+    return discovered
+```
+<br/>
+
+### 백트래킹
+- DFS보다 넓은 의미을 가진다. 후보군을 구축하다가 가능성이 없다고 판단되면 그 즉시 후보를 포기하는 방식이다.
+  
+- 브루트 포스와 유사하지만 브루트 포스는 항상 모든 경로를 움직이는 점에서 조금 더 효율적이다.
+
+- 제약 충족 문제의 풀이에 필수적이다. (ex. N-Queen, 스도쿠)
