@@ -15,7 +15,7 @@
 
 <center>
 
-  ![alt text](image-1.png)
+  ![alt text](./images/image-1.png)
 </center>
 
 ### 그래프 순회
